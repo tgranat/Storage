@@ -19,6 +19,24 @@ namespace Storage.Controllers
             db = context;
         }
 
+        // IActionResult for the new product view model
+ 
+        public IActionResult ProductView()
+        {
+            // Första försöket...
+
+            List<Product> dbProducts = db.Product.ToList();
+
+            IEnumerable<ProductViewModel> products = dbProducts
+                .Select(p => new ProductViewModel {
+                    Name = p.Name, 
+                    Price = p.Price, 
+                    Count = p.Count, 
+                    InventoryValue = 0 }).ToList();
+
+            return View();
+        }
+
         // GET: Products
 
         // Getting list of Products
