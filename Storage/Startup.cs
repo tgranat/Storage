@@ -26,7 +26,7 @@ namespace Storage
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            // StorageContext injected. Set to use sql database with connection string from appsettings.json
             services.AddDbContext<StorageContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("StorageContext")));
         }
