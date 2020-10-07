@@ -20,12 +20,18 @@ namespace Storage.Controllers
         }
 
         // GET: Products
+
+        // Getting list of Products
+
         public async Task<IActionResult> Index()
         {
             return View(await db.Product.ToListAsync());
         }
 
         // GET: Products/Details/5
+
+        // Getting a Product based on Id (from list of Products)
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,12 +50,18 @@ namespace Storage.Controllers
         }
 
         // GET: Products/Create
+
+        // Create new
+
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Products/Create
+
+        // Submitting form with new Product
+
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,6 +78,8 @@ namespace Storage.Controllers
         }
 
         // GET: Products/Edit/5
+
+        // Choose Edit from list of Products
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,6 +96,9 @@ namespace Storage.Controllers
         }
 
         // POST: Products/Edit/5
+
+        // Submitting updated Product
+
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -117,6 +134,9 @@ namespace Storage.Controllers
         }
 
         // GET: Products/Delete/5
+
+        // Get product to delete
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +155,9 @@ namespace Storage.Controllers
         }
 
         // POST: Products/Delete/5
+
+        // Submit delete
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
