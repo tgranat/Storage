@@ -23,8 +23,6 @@ namespace Storage.Controllers
  
         public IActionResult ProductView()
         {
-            // Första försöket...
-
             List<Product> dbProducts = db.Product.ToList();
 
             IEnumerable<ProductViewModel> products = dbProducts
@@ -32,7 +30,7 @@ namespace Storage.Controllers
                     Name = p.Name, 
                     Price = p.Price, 
                     Count = p.Count, 
-                    InventoryValue = 0 }).ToList();
+                    InventoryValue = p.Price * p.Count}).ToList();
 
             return View();
         }
