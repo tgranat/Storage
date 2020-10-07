@@ -41,11 +41,13 @@ namespace Storage.Controllers
 
         public async Task<IActionResult> Index(string category)
         {
-            IEnumerable<Product> products = await db.Product.ToListAsync();
-            if (!String.IsNullOrEmpty(category))
-            {
-                products = products.Where(p => p.Category.Equals(category));
-            }
+            // https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1
+            // Filtering is done in database. I think? Depends on how it's implemented?
+            IEnumerable<Product> products = 
+                await db.Product.Where(p => string.IsNullOrEmpty(category) || p.Category.Contains(category)).ToListAsync();
+            // For me to remember how the code above works: 
+            // for conditional logical operators:If IsNullOrEmpty test is true, second test is not evaluated
+            // Contains() works with upper/lower case and leading/trailing whitspace etc
             return View(products);
         }
 
@@ -91,6 +93,7 @@ namespace Storage.Controllers
         {
             if (ModelState.IsValid)
             {
+                // TODO trim strings etc. before store
                 db.Add(product);
                 await db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -135,6 +138,7 @@ namespace Storage.Controllers
             {
                 try
                 {
+                    // TODO trim strings etc. before store
                     db.Update(product);
                     await db.SaveChangesAsync();
                 }
