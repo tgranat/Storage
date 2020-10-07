@@ -39,9 +39,14 @@ namespace Storage.Controllers
 
         // Getting list of Products
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string category)
         {
-            return View(await db.Product.ToListAsync());
+            IEnumerable<Product> products = await db.Product.ToListAsync();
+            if (!String.IsNullOrEmpty(category))
+            {
+                products = products.Where(p => p.Category.Equals(category));
+            }
+            return View(products);
         }
 
         // GET: Products/Details/5
