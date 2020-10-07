@@ -25,14 +25,14 @@ namespace Storage.Controllers
         {
             List<Product> dbProducts = db.Product.ToList();
 
-            IEnumerable<ProductViewModel> products = dbProducts
+            IEnumerable<ProductViewModel> productsViewList = dbProducts
                 .Select(p => new ProductViewModel {
                     Name = p.Name, 
                     Price = p.Price, 
                     Count = p.Count, 
                     InventoryValue = p.Price * p.Count}).ToList();
 
-            return View();
+            return View(productsViewList);
         }
 
         // GET: Products
