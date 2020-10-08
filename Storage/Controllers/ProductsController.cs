@@ -44,7 +44,7 @@ namespace Storage.Controllers
         public async Task<IActionResult> Index(string category = null)
         {
             // https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1
-            // Filtering is done in database. I think? Depends on how it's implemented?
+            // Filtering is done in database. 
             var products = 
                  db.Product.Where(p => string.IsNullOrEmpty(category) || p.Category.Contains(category));
             // For me to remember how the code above works: 
