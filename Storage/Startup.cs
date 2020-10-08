@@ -28,7 +28,9 @@ namespace Storage
             services.AddControllersWithViews();
             // StorageContext injected. Set to use sql database with connection string from appsettings.json
             services.AddDbContext<StorageContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("StorageContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("StorageContext")).EnableSensitiveDataLogging());
+            // EnableSensitiveDataLogging() to enable database logging. 
+            // added to LogLevel in appsettings: "Microsoft.EntityFrameWorkCore.Database.Command" : "Information"
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
