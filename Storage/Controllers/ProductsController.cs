@@ -34,23 +34,25 @@ namespace Storage.Controllers
                     InventoryValue = p.Price * p.Count
                 }).ToListAsync();
 
-            return View(productsViewList);
+            return View(productsViewList); // It's possible to specify which index the model should go to 
         }
 
         // GET: Products
 
         // Getting list of Products
 
-        public async Task<IActionResult> Index(string category)
+        public async Task<IActionResult> Index(string category = null)
         {
             // https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1
             // Filtering is done in database. I think? Depends on how it's implemented?
-            IEnumerable<Product> products = 
-                await db.Product.Where(p => string.IsNullOrEmpty(category) || p.Category.Contains(category)).ToListAsync();
+            var products = 
+                 db.Product.Where(p => string.IsNullOrEmpty(category) || p.Category.Contains(category));
             // For me to remember how the code above works: 
             // for conditional logical operators:If IsNullOrEmpty test is true, second test is not evaluated
             // Contains() works with upper/lower case and leading/trailing whitspace etc
-            return View(products);
+            return View(await products.ToListAsync());
+
+            // Ingen skillnad på SQL om man har "await ... ToListAsync()"  i return eller där products listan populeras
         }
 
         // GET: Products/Details/5
