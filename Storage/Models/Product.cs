@@ -12,18 +12,21 @@ namespace Storage.Models
         [Required]
         [StringLength(50, ErrorMessage = "Max 50 tecken")]
         public string Name { get; set; }
-        [Range(0, 1000000)]
+        [Range(0, int.MaxValue)]
+        [DisplayFormat(DataFormatString = "{0:c}")]
         public int Price { get; set; }
         [Display(Name = "Order date")]
         [DataType(DataType.Date)]
         public DateTime Orderdate { get; set; }
-        [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "-")]
         public string Category { get; set; }
         [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "-")]
         public string Shelf { get; set; }
-        [Range(0, 1000000)]
+        [Range(0, int.MaxValue)]
         public int Count { get; set; }
         [StringLength(100, ErrorMessage = "Max 100 tecken")]
+        [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "-")]
         public string Description { get; set; }
 
     }
