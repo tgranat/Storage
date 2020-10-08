@@ -19,22 +19,6 @@ namespace Storage.Controllers
             db = context;
         }
 
-        // IActionResult for the new product view model
-        // First attempt (keeping this for reference)
-
-        //public IActionResult ProductView()
-        //{
-        //    List<Product> dbProducts = db.Product.ToList();
-
-        //    IEnumerable<ProductViewModel> productsViewList = dbProducts
-        //        .Select(p => new ProductViewModel {
-        //            Name = p.Name, 
-        //            Price = p.Price, 
-        //            Count = p.Count, 
-        //            InventoryValue = p.Price * p.Count}).ToList();
-        //    return View(productsViewList);
-        //}
-
         // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
 
         // Updated to use async and do Select against the StorageContext
@@ -43,6 +27,7 @@ namespace Storage.Controllers
             IEnumerable<ProductViewModel> productsViewList = await db.Product
                 .Select(p => new ProductViewModel
                 {
+                    Id = p.Id,
                     Name = p.Name,
                     Price = p.Price,
                     Count = p.Count,
