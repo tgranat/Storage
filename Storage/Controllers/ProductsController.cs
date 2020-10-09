@@ -41,6 +41,9 @@ namespace Storage.Controllers
 
         // Getting list of Products
 
+        //[Route("")]
+        //[Route("/Home") ]
+        //[Route("/Home/Index")]
         public async Task<IActionResult> Index(string category = null)
         {
             // https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1

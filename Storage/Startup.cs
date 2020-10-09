@@ -55,6 +55,8 @@ namespace Storage
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllers();  // To map attribute routed controllers.
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Products}/{action=Index}/{id?}");
