@@ -48,14 +48,21 @@ namespace Storage.Controllers
         {
             // https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1
             // Filtering is done in database. 
-            var products = 
-                 db.Product.Where(p => string.IsNullOrEmpty(category) || p.Category.Contains(category));
+
+            // One way to do it:
+            //var products = 
+            //     db.Product.Where(p => string.IsNullOrEmpty(category) || p.Category.Contains(category));
             // For me to remember how the code above works: 
             // for conditional logical operators:If IsNullOrEmpty test is true, second test is not evaluated
+
+            // Another way, maybe looks better:
+            var products = string.IsNullOrEmpty(category) ? db.Product : db.Product.Where(p => p.Category.Contains(category));
+
             // Contains() works with upper/lower case and leading/trailing whitspace etc
             return View(await products.ToListAsync());
 
             // Ingen skillnad på SQL om man har "await ... ToListAsync()"  i return eller där products listan populeras
+            // (vad jag kunde se i SQL loggningen). Men kanske snyggare att göra await sist.
         }
 
         // GET: Products/Details/5
