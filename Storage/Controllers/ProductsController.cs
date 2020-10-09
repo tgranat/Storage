@@ -44,7 +44,7 @@ namespace Storage.Controllers
         //[Route("")]
         //[Route("/Home") ]
         //[Route("/Home/Index")]
-        public async Task<IActionResult> Index(string category = null)
+        public async Task<IActionResult> Index(string category = null)  // category is bound in index.cshtml (name="Category")
         {
             // https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1
             // Filtering is done in database. 
