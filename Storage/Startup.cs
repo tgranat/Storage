@@ -55,6 +55,13 @@ namespace Storage
 
             app.UseEndpoints(endpoints =>
             {
+                // https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1
+                // ASP.NET Core apps can mix the use of conventional routing and attribute routing. It's typical to use conventional routes for 
+                // controllers serving HTML pages for browsers, and attribute routing for controllers serving REST APIs.
+                //Actions are either conventionally routed or attribute routed.Placing a route on the controller or the action makes it attribute
+                // routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa.Any route attribute 
+                //on the controller makes all actions in the controller attribute routed.
+
                 //endpoints.MapControllers();  // To map attribute routed controllers.
 
                 endpoints.MapControllerRoute(
